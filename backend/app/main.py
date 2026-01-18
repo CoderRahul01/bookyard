@@ -16,7 +16,7 @@ from app.db.session import init_db
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
@@ -26,14 +26,14 @@ async def lifespan(app: FastAPI):
     """Handle application startup and shutdown."""
     logger.info(f"Starting {settings.PROJECT_NAME} v{settings.VERSION}")
     logger.info(f"Environment: {settings.ENVIRONMENT}")
-    
+
     # Startup: Initialize Database
     try:
         init_db()
         logger.info("Database initialized successfully")
     except Exception as e:
         logger.error(f"Database initialization failed: {e}")
-        
+
     yield
     logger.info("Shutting down application")
 
